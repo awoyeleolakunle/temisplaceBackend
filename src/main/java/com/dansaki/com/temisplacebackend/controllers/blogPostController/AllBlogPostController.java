@@ -17,7 +17,6 @@ import java.util.List;
 @AllArgsConstructor
 
 public class AllBlogPostController {
-
     private final BlogPostService blogPostService;
 
     @PostMapping("allBlogPost")

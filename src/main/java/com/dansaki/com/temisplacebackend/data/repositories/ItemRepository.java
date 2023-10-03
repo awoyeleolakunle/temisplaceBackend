@@ -1,8 +1,11 @@
 package com.dansaki.com.temisplacebackend.data.repositories;
 
+import com.dansaki.com.temisplacebackend.data.enums.ItemCategory;
 import com.dansaki.com.temisplacebackend.data.models.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ItemRepository extends JpaRepository<Item, Long> {
+import java.util.List;
 
+public interface ItemRepository extends JpaRepository<Item, Long> {
+    List<Item> findAllByItemCategory(ItemCategory itemCategory);
 }

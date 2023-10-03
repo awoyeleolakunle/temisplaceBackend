@@ -30,4 +30,5 @@ public class Item {
     @Enumerated(EnumType.STRING)
     private PublishingType publishingType;
     private String allergy;
+    private List<String> listOfUnitsAvailable;
 }

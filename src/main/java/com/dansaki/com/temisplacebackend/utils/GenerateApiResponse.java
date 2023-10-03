@@ -14,6 +14,11 @@ public class GenerateApiResponse {
     public static final String BLOG_POST_NOT_FOUND = "No blog post with this details";
     public static final String USER_ALREADY_EXIST ="Account already exists" ;
     public static final String ITEM_CREATED_SUCCESSFULLY = "Item has been successfully added";
+    public static final String NO_USER_FOUND = "Account not found" ;
+    public static final String USER_CREATED_SUCCESSFULLY = "Account successfully created";
+    public static final String INCORRECT_DETAILS = "The details you entered are incorrect";
+    public static final String ITEM_SUCCESSFULLY_REMOVED = "Item has been successfully removed from your unit";
+    public static final String ITEM_SUCCESSFULLY_ADDED = "Item has been successfully added to your unit";
 
 
     public static ApiResponse createdResponse(Object data){
@@ -88,12 +93,30 @@ public class GenerateApiResponse {
                 .build();
     }
 
-    public static ApiResponse updateSucessful(Object data) {
+    public static ApiResponse updateSuccessful(Object data) {
         return ApiResponse.builder()
                 .data(data)
                 .httpStatus(HttpStatus.OK)
                 .statusCode(HttpStatus.OK.value())
                 .isSuccessful(true)
+                .build();
+    }
+
+    public static ApiResponse userNotFound(Object data) {
+        return ApiResponse.builder()
+                .data(data)
+                .httpStatus(HttpStatus.BAD_REQUEST)
+                .statusCode(HttpStatus.BAD_REQUEST.value())
+                .isSuccessful(false)
+                .build();
+    }
+
+    public static ApiResponse incorrectDetails(Object data) {
+        return ApiResponse.builder()
+                .data(data)
+                .httpStatus(HttpStatus.BAD_REQUEST)
+                .statusCode(HttpStatus.BAD_REQUEST.value())
+                .isSuccessful(false)
                 .build();
     }
 }

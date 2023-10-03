@@ -40,8 +40,8 @@ class BlogPostCreationServiceImpTest {
         blogCreationRequest.setEmail("emailAddress");
         blogCreationRequest.setPublishDate(LocalDate.parse("2023-10-10"));
         blogCreationRequest.setPublishTime("10:00 PM");
-        blogCreationRequest.setPublishStatus(PublishStatus.valueOf("PUBLISHED"));
-        blogCreationRequest.setBlogType(BlogType.valueOf("PAID"));
+        blogCreationRequest.setPublishStatus("PUBLISHED");
+        blogCreationRequest.setBlogType("PAID");
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/temisplace/blog/blogPostCreation")
                 .contentType(MediaType.APPLICATION_JSON)

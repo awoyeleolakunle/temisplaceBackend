@@ -22,5 +22,5 @@ public class ItemPriceAndSize {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private BigDecimal price;
-    private String sizes;
+    private String size;
 }

@@ -1,11 +1,10 @@
-package com.dansaki.com.temisplacebackend.controllers.dashBoardInfoControllers;
+package com.dansaki.com.temisplacebackend.controllers.superAdminDashBoardInfoControllers;
 
 
 import com.dansaki.com.temisplacebackend.services.dashBoardInfo.dashBoardInfoService.DashBoardInfoService;
 import com.dansaki.com.temisplacebackend.utils.ApiResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,6 +1,8 @@
 package com.dansaki.com.temisplacebackend.services.orders.CreateOrder;
 
 
+import com.dansaki.com.temisplacebackend.data.enums.ActiveOrderStatus;
+import com.dansaki.com.temisplacebackend.data.enums.OrderFrom;
 import com.dansaki.com.temisplacebackend.data.enums.OrderStatus;
 import com.dansaki.com.temisplacebackend.data.enums.UnitName;
 import com.dansaki.com.temisplacebackend.data.models.Item;
@@ -17,12 +19,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -39,7 +38,7 @@ public class CreateOrderServiceImp implements CreateOrderService{
         for (OrderItemRequest orderItemRequest: orderRequest.getOrderItemRequestList()) {
         Item item =   itemService.findById(orderItemRequest.getItemId()).orElseThrow();
         OrderItemDetails orderItemDetails = new OrderItemDetails();
-        orderItemDetails.setItems(item);
+        orderItemDetails.setItem(item);
         orderItemDetails.setQuantity(orderItemRequest.getQuantity());
         orderItemDetails.setSubTotal(orderItemRequest.getSubTotal());
         OrderItemDetails savedOrderItemDetails = orderItemDetailsService.save(orderItemDetails);
@@ -53,10 +52,12 @@ public class CreateOrderServiceImp implements CreateOrderService{
         for (OrderItemDetails orderItemDetails : newOrder.getOrderItemDetailsList()) {
             total = total.add(orderItemDetails.getSubTotal());
         }
-        newOrder.setTotal(total);
+        newOrder.setTotal(BigDecimal.valueOf(orderRequest.getTotal()));
         newOrder.setUnitName(UnitName.valueOf(orderRequest.getUnitName()));
         newOrder.setOrderedTime(LocalDateTime.now());
-        newOrder.setOrderStatus(OrderStatus.IN_PROGRESS);
+        newOrder.setOrderStatus(OrderStatus.ACTIVE);
+        newOrder.setActiveOrderStatus(ActiveOrderStatus.ACCEPT_AND_PROCESSING);
+        newOrder.setOrderFrom(OrderFrom.valueOf(orderRequest.getOrderFrom()));
         orderService.save(newOrder);
 
 

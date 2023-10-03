@@ -21,6 +21,7 @@ public class BlogPost {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String postTitle;
+    private String postAuthor;
     private String email;
     private LocalDate publishDate;
     private LocalTime publishTime;

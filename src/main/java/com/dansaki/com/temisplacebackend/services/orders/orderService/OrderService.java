@@ -5,7 +5,6 @@ import com.dansaki.com.temisplacebackend.data.enums.UnitName;
 import com.dansaki.com.temisplacebackend.data.models.Orders;
 
 import java.util.List;
-import java.util.Set;
 
 public interface OrderService {
 
@@ -17,4 +16,15 @@ public interface OrderService {
     List<Orders> findTotalCancelledOrders();
 
     List<Orders> findAllLondonUnitCompletedOrders(UnitName unitName, OrderStatus orderStatus);
+
+    List<Orders> findAllUnitCompletedOrdersForThePreviousMonth(String unitName);
+
+    List<Orders> findAllUnitCompletedOrdersForTheCurrentMonth(String unitName);
+
+    List<Orders> findAUnitAllOrdersUnderOrderStatusForToday(String unitName, OrderStatus orderStatus);
+
+    List<Orders> findAUnitAllOrdersUnderOrderStatusForThePreviousDay(String unitName, OrderStatus orderStatus);
+
+    //List<Orders> findAUnitAllCancelledOrdersForToday(String unitName);
+
 }

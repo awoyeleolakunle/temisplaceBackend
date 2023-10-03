@@ -4,6 +4,7 @@ public enum ItemCategory {
     DRINKS,
     SIDES,
     SOUP,
+    RICE,
     SANDWICHES,
     SWALLOW
 

@@ -1,6 +1,7 @@
 package com.dansaki.com.temisplacebackend.services.authentication;
 
 
+import com.dansaki.com.temisplacebackend.data.enums.UserStatus;
 import com.dansaki.com.temisplacebackend.data.models.Roles;
 import com.dansaki.com.temisplacebackend.data.models.User;
 import com.dansaki.com.temisplacebackend.dtos.request.RegistrationRequest;
@@ -9,17 +10,17 @@ import com.dansaki.com.temisplacebackend.security.JwtService;
 import com.dansaki.com.temisplacebackend.services.user.UserService;
 import com.dansaki.com.temisplacebackend.utils.ApiResponse;
 import com.dansaki.com.temisplacebackend.utils.GenerateApiResponse;
-import jakarta.annotation.PostConstruct;
-import jakarta.persistence.PrePersist;
-import lombok.AllArgsConstructor;
+
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.authentication.AuthenticationProvider;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -44,6 +45,9 @@ public ApiResponse register(RegistrationRequest registrationRequest) throws User
         userRoles.add(Roles.CUSTOMER);
         user.setRoles(userRoles);
         user.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
+        user.setRegistrationDate(LocalDate.now());
+        user.setRegistrationTime(LocalTime.now());
+        user.setUserStatus(UserStatus.SUSPEND);
         User savedUser =   userService.save(user);
 
     UserDetails userDetails = userDetailsService.loadUserByUsername(savedUser.getEmailAddress());

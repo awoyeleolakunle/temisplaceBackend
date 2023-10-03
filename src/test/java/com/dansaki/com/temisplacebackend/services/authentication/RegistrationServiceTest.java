@@ -37,6 +37,8 @@ class RegistrationServiceTest {
         registrationRequest.setEmailAddress("emailAddress1");
         registrationRequest.setFirstName("firstName");
         registrationRequest.setLastName("lastName");
+        registrationRequest.setCountry("United Kingdom");
+        registrationRequest.setCity("London");
        ApiResponse  response=  registrationService.register(registrationRequest);
 
         System.out.println(response.getData());
@@ -45,13 +47,17 @@ class RegistrationServiceTest {
     }
 
     @Test
-    public void createSuperAdmin(){
-        Set<Roles> userRoles = new HashSet<>();
-        userRoles.add(Roles.ADMIN);
-        User user = new User();
-        user.setEmailAddress("emailAddress");
-        user.setPassword(passwordEncoder.encode("12345"));
-        user.setRoles(userRoles);
-        userService.save(user);
+    public void createSuperAdmin() throws UserRegistrationException {
+        RegistrationRequest registrationRequest = new RegistrationRequest();
+        registrationRequest.setPassword("password");
+        registrationRequest.setEmailAddress("emailAddress");
+        registrationRequest.setFirstName("firstAdmin");
+        registrationRequest.setLastName("lastNameAdin");
+        ApiResponse  response=  registrationService.register(registrationRequest);
+
+        System.out.println(response.getData());
+
+        assertThat(response.isSuccessful()).isTrue();
+
     }
 }

@@ -1,9 +1,12 @@
 package com.dansaki.com.temisplacebackend.data.models;
 
 
+import com.dansaki.com.temisplacebackend.data.enums.UserStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +25,14 @@ public class User {
     private String lastName;
     private String phoneNumber;
     private String password;
+    private String country;
+    private String city;
+    private String postCode;
+    private String address;
+    private LocalDate registrationDate;
+    private LocalTime registrationTime;
+    @Enumerated(EnumType.STRING)
+    private UserStatus userStatus;
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Roles.class, fetch = FetchType.EAGER)
    // @CollectionTable(name = "role")

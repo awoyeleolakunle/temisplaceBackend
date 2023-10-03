@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class OrderRequest {
     List<OrderItemRequest> orderItemRequestList;
-    private BigDecimal total;
+    private Long total;
     private String unitName;
+    private String orderFrom;
 }

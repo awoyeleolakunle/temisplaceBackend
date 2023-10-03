@@ -20,7 +20,7 @@ public class UpdateBlogPostServiceImp implements UpdateBlogPostService{
        Optional<BlogPost> blogPost = blogPostService.findPostById(id);
        if(blogPost.isEmpty()) return GenerateApiResponse.blogPostNotFound(GenerateApiResponse.BLOG_POST_NOT_FOUND);
        updatePost(blogPost.get(), blogPostUpdateRequest);
-        return GenerateApiResponse.updateSucessful(GenerateApiResponse.STATUS_UPDATED_SUCCESSFULLY);
+        return GenerateApiResponse.updateSuccessful(GenerateApiResponse.STATUS_UPDATED_SUCCESSFULLY);
     }
 
     private void updatePost(BlogPost blogPost, BlogPostUpdateRequest blogPostUpdateRequest) {

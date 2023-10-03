@@ -21,4 +21,6 @@ public class ItemCreationRequest {
     private List<ItemPriceAndSize> itemPriceAndSize;
     private String publishingType;
     private String allergy;
+    private List<String> listOfUnitsAvailable =
+            List.of(new String[]{ "SUNDERLAND", "LONDON", "NEWCASTLE", "GLOUCESTERSHIRE", "COVENTRY"});
 }

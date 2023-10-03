@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -25,6 +26,11 @@ public class UserServiceImp implements UserService {
     @Override
     public User findUserByEmailAddress(String emailAddress) {
         return userRepository.findUserByEmailAddressIgnoreCase(emailAddress).orElse(null);
+    }
+
+    @Override
+    public Optional<User> findByEmailAddress(String emailAddress) {
+        return userRepository.findUserByEmailAddressIgnoreCase(emailAddress);
     }
 
     @Override

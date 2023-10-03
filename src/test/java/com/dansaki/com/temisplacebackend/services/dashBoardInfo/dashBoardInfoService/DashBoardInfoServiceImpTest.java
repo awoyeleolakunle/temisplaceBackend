@@ -64,6 +64,8 @@ class DashBoardInfoServiceImpTest {
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setOrderItemRequestList(new ArrayList<>(orderRequestList));
         orderRequest.setUnitName("LONDON");
+        orderRequest.setOrderFrom("ONLINE");
+        orderRequest.setTotal(900L);
 
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/temisplace/Orders/makeOrder")

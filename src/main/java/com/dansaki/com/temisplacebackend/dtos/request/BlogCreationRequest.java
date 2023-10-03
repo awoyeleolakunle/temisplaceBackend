@@ -2,8 +2,6 @@ package com.dansaki.com.temisplacebackend.dtos.request;
 
 
 import com.dansaki.com.temisplacebackend.data.enums.BlogStatus;
-import com.dansaki.com.temisplacebackend.data.enums.BlogType;
-import com.dansaki.com.temisplacebackend.data.enums.PublishStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,12 +16,13 @@ import java.time.LocalTime;
 @Setter
 public class BlogCreationRequest {
     private String email;
+   private String postAuthor;
     private String postTitle;
     private LocalDate publishDate;
     private String publishTime;
-    private PublishStatus publishStatus;
+    private String publishStatus;
     private String blogContent;
     private String postImageUrl;
-    private BlogType blogType;
+    private String blogType;
     private BlogStatus blogStatus;
 }

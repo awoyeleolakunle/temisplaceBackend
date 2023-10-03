@@ -22,8 +22,10 @@ public class OrderItemDetails {
     private Long orderItemDetailsId;
 
 
-    @ManyToOne
-    private Item items;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Item item;
     private int quantity;
     private BigDecimal subTotal = BigDecimal.ZERO;
+
+
 }

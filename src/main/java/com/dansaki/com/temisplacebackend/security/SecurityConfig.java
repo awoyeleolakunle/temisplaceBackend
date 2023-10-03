@@ -25,7 +25,11 @@ private final String[] allowedEndPoints ={"/api/v1/temisplace/blog/blogPostCreat
         "/api/v1/temisplace/Orders/makeOrder", "/api/v1/temisplace/register",
         "/api/v1/temisplace/Orders/orderCompletion", "/api/v1/temisplace/Orders/orderCancellation",
         "/api/v1/temisplace/dashBoardInfo", "/api/v1/temisplace/allBlogPost",
-        "/api/v1/temisplace/paginatedUserList", "/api/v1/temisplace/itemCreation"};
+        "/api/v1/temisplace/paginatedUserList", "/api/v1/temisplace/itemCreation",
+        "/api/v1/temisplace/updateUser", "/api/v1/temisplace/allItems", "/api/v1/temisplace/registerOrUpdateUser"
+        ,"/api/v1/temisplace/unitDashboardDetails", "/api/v1/temisplace/unitItemAvailabilityRemoval",
+        "/api/v1/temisplace/unitItemAvailabilityAddition", "/api/v1/temisplace/availableUnitItemsUnderItemCategory",
+        "/api/v1/temisplace/allItemsUnderAnItemCategory", "/api/v1/temisplace/unitOrderDashBoardDetails"};
 
 @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -33,7 +37,7 @@ private final String[] allowedEndPoints ={"/api/v1/temisplace/blog/blogPostCreat
             csrf(AbstractHttpConfigurer::disable)
 //            .headers(AbstractHttpConfigurer::disable)
             .headers(httpSecurityHeadersConfigurer ->
-                    httpSecurityHeadersConfigurer.addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin", "http://localhost:3000")))
+                    httpSecurityHeadersConfigurer.addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin", "http://127.0.0.1:5500")))
             .authorizeHttpRequests((auth -> {
                auth.requestMatchers(allowedEndPoints).permitAll();}))
             .sessionManagement((session) -> {
