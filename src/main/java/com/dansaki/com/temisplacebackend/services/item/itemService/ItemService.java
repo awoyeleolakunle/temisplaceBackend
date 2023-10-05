@@ -1,6 +1,7 @@
 package com.dansaki.com.temisplacebackend.services.item.itemService;
 
 import com.dansaki.com.temisplacebackend.data.models.Item;
+import com.dansaki.com.temisplacebackend.dtos.request.AUnitItemsUnderItemCategoryRequest;
 import com.dansaki.com.temisplacebackend.dtos.request.AllItemsUnderAnItemCategoryRequest;
 import com.dansaki.com.temisplacebackend.dtos.request.AvailableUnitItemUnderItemCategoryRequest;
 import com.dansaki.com.temisplacebackend.dtos.request.PaginationRequest;
@@ -19,5 +20,9 @@ public interface ItemService {
 
 
     List<Item> findAllItemsUnderAnItemCategory(AllItemsUnderAnItemCategoryRequest allItemsUnderAnItemCategoryRequest);
+
+    List<String> returnNamesOfAllItemCategory();
+
+    List<Item> findAUnitAllItemsUnderItemCategory(AUnitItemsUnderItemCategoryRequest aUnitItemsUnderItemCategoryRequest);
 
 }

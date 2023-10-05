@@ -4,6 +4,7 @@ import com.dansaki.com.temisplacebackend.data.enums.OrderStatus;
 import com.dansaki.com.temisplacebackend.data.enums.UnitName;
 import com.dansaki.com.temisplacebackend.data.models.Orders;
 import com.dansaki.com.temisplacebackend.data.repositories.OrderRepository;
+import com.dansaki.com.temisplacebackend.dtos.request.UnitOrderUnderOrderStatusRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -73,14 +74,14 @@ public class OrderServiceImp implements OrderService{
                 startOfThePreviousDay, endOfThePreviousDay, orderStatus);
     }
 
-//    @Override
-//    public List<Orders> findAUnitAllCancelledOrdersForToday(String unitName) {
-//        LocalDateTime currentDateTime  = LocalDateTime.now();
-//        LocalDateTime startOfToday = currentDateTime.withHour(0).withMinute(0).withSecond(0);
-//
-//        return orderRepository.findAllByUnitNameAndOrderedTimeBetweenAndOrderStatus(UnitName.valueOf(unitName),
-//                startOfToday, currentDateTime, OrderStatus.CANCELLED);
-//    }
+    @Override
+    public List<Orders> findAUnitAllOrdersUnderOrderStatus(UnitOrderUnderOrderStatusRequest unitOrderUnderOrderStatusRequest) {
 
+        var list = orderRepository.findAllByUnitNameAndOrderStatus(
+               UnitName.valueOf(unitOrderUnderOrderStatusRequest.getUnitName().toUpperCase()), OrderStatus.valueOf(
+                        unitOrderUnderOrderStatusRequest.getOrderStatus().toUpperCase()) );
 
+        System.out.println("I'm the size of the list " + list.size());
+        return list;
+    }
 }

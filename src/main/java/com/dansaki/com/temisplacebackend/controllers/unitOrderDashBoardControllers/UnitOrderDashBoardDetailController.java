@@ -1,4 +1,4 @@
-package com.dansaki.com.temisplacebackend.controllers.unitOrderDashBoardController;
+package com.dansaki.com.temisplacebackend.controllers.unitOrderDashBoardControllers;
 
 
 import com.dansaki.com.temisplacebackend.dtos.response.UnitOrderDashBoardDetailResponse;

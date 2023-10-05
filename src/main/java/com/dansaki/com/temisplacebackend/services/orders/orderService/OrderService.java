@@ -3,6 +3,7 @@ package com.dansaki.com.temisplacebackend.services.orders.orderService;
 import com.dansaki.com.temisplacebackend.data.enums.OrderStatus;
 import com.dansaki.com.temisplacebackend.data.enums.UnitName;
 import com.dansaki.com.temisplacebackend.data.models.Orders;
+import com.dansaki.com.temisplacebackend.dtos.request.UnitOrderUnderOrderStatusRequest;
 
 import java.util.List;
 
@@ -24,6 +25,9 @@ public interface OrderService {
     List<Orders> findAUnitAllOrdersUnderOrderStatusForToday(String unitName, OrderStatus orderStatus);
 
     List<Orders> findAUnitAllOrdersUnderOrderStatusForThePreviousDay(String unitName, OrderStatus orderStatus);
+
+    List<Orders> findAUnitAllOrdersUnderOrderStatus(UnitOrderUnderOrderStatusRequest unitOrderUnderOrderStatusRequest);
+
 
     //List<Orders> findAUnitAllCancelledOrdersForToday(String unitName);
 

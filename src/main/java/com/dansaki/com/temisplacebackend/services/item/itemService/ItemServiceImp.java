@@ -3,6 +3,7 @@ package com.dansaki.com.temisplacebackend.services.item.itemService;
 import com.dansaki.com.temisplacebackend.data.enums.ItemCategory;
 import com.dansaki.com.temisplacebackend.data.models.Item;
 import com.dansaki.com.temisplacebackend.data.repositories.ItemRepository;
+import com.dansaki.com.temisplacebackend.dtos.request.AUnitItemsUnderItemCategoryRequest;
 import com.dansaki.com.temisplacebackend.dtos.request.AllItemsUnderAnItemCategoryRequest;
 import com.dansaki.com.temisplacebackend.dtos.request.AvailableUnitItemUnderItemCategoryRequest;
 import com.dansaki.com.temisplacebackend.dtos.request.PaginationRequest;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -53,7 +55,7 @@ public class ItemServiceImp implements ItemService{
       if(listOfItems.isEmpty()){ return listOfItems;}
 
       List<Item> filteredList = listOfItems.stream()
-                .filter(item -> item.getListOfUnitsAvailable().contains(availableUnitItemUnderItemCategoryRequest.getUnitName())).toList();
+                .filter(item -> item.getListOfUnitsAvailable().contains(availableUnitItemUnderItemCategoryRequest.getUnitName().toUpperCase())).toList();
 
      int pageSize = availableUnitItemUnderItemCategoryRequest.getPageSize();
      int pageNumber = availableUnitItemUnderItemCategoryRequest.getPageNumber();
@@ -85,5 +87,24 @@ public class ItemServiceImp implements ItemService{
         int lastIndex = Math.min(startIndex + pageSize, totalListSize);
 
         return listOfItemsUnderAnItemCategory.subList(startIndex, lastIndex);
+    }
+
+    @Override
+    public List<String> returnNamesOfAllItemCategory() {
+
+        List<String> namesOfAllItemCategories = new ArrayList<>();
+        for (ItemCategory itemCategory: ItemCategory.values()) {
+            namesOfAllItemCategories.add(itemCategory.name());
+        }
+        return namesOfAllItemCategories;
+    }
+
+    @Override
+    public List<Item> findAUnitAllItemsUnderItemCategory(AUnitItemsUnderItemCategoryRequest aUnitItemsUnderItemCategoryRequest) {
+
+        List<Item> allItemsByItemCategory =  itemRepository.findAllByItemCategory(ItemCategory.valueOf(aUnitItemsUnderItemCategoryRequest.getItemCategory().toUpperCase()));
+        if(allItemsByItemCategory.isEmpty()) { return allItemsByItemCategory;}
+
+        return allItemsByItemCategory.stream().filter(item -> item.getListOfUnitsAvailable().contains(aUnitItemsUnderItemCategoryRequest.getUnitName().toUpperCase())).toList();
     }
 }
