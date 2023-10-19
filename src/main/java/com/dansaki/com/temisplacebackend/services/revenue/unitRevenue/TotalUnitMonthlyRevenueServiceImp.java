@@ -5,13 +5,12 @@ import com.dansaki.com.temisplacebackend.data.enums.OrderStatus;
 import com.dansaki.com.temisplacebackend.data.enums.UnitName;
 import com.dansaki.com.temisplacebackend.data.models.Orders;
 import com.dansaki.com.temisplacebackend.services.orders.orderService.OrderService;
-import com.dansaki.com.temisplacebackend.services.revenue.totalRevenue.TotalMonthlyRevenueService;
+import com.dansaki.com.temisplacebackend.services.revenue.totalRevenue.TotalMonthlyAndDailyRevenueService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +21,7 @@ public class TotalUnitMonthlyRevenueServiceImp implements TotalUnitMonthlyRevenu
 
     private final OrderService orderService;
 
-    private final TotalMonthlyRevenueService totalMonthlyRevenueService;
+    private final TotalMonthlyAndDailyRevenueService totalMonthlyRevenueService;
 
     private List<BigDecimal> listOfUnitRevenue;
 

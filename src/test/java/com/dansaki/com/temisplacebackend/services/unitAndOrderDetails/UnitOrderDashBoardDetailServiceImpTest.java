@@ -76,6 +76,7 @@ class UnitOrderDashBoardDetailServiceImpTest {
         orderRequest.setUnitName("LONDON");
         orderRequest.setOrderFrom("ONLINE");
         orderRequest.setTotal(900L);
+        orderRequest.setPaymentType("CASH");
 
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/temisplace/Orders/makeOrder")

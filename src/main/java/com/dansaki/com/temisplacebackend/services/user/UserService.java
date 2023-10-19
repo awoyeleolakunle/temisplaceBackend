@@ -2,8 +2,8 @@ package com.dansaki.com.temisplacebackend.services.user;
 
 import com.dansaki.com.temisplacebackend.data.models.User;
 import com.dansaki.com.temisplacebackend.dtos.request.PaginationRequest;
-import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,4 +18,10 @@ public interface UserService {
     List<User> findAllRegisteredUsers();
 
     List<User> findPaginatedUserList(PaginationRequest paginationRequest);
+
+    List<User> findAllRegisteredCustomerForAParticularDate(LocalDate registrationDate);
+
+
+    Optional<User> findUserById(Long userId);
+
 }

@@ -1,9 +1,6 @@
 package com.dansaki.com.temisplacebackend.services.orders.orderService;
 
-import com.dansaki.com.temisplacebackend.data.enums.ItemCategory;
-import com.dansaki.com.temisplacebackend.data.enums.OrderFrom;
-import com.dansaki.com.temisplacebackend.data.enums.OrderStatus;
-import com.dansaki.com.temisplacebackend.data.enums.UnitName;
+import com.dansaki.com.temisplacebackend.data.enums.*;
 import com.dansaki.com.temisplacebackend.data.models.Item;
 import com.dansaki.com.temisplacebackend.data.models.ItemPriceAndSize;
 import com.dansaki.com.temisplacebackend.data.models.Orders;
@@ -11,6 +8,7 @@ import com.dansaki.com.temisplacebackend.data.repositories.ItemRepository;
 import com.dansaki.com.temisplacebackend.data.repositories.OrderRepository;
 import com.dansaki.com.temisplacebackend.dtos.request.*;
 import com.dansaki.com.temisplacebackend.services.item.itemService.ItemService;
+import com.dansaki.com.temisplacebackend.services.itemPriceAndSize.ItemPriceAndSizeService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
@@ -47,17 +45,35 @@ class OrderServiceImpTest {
     @Autowired
     private OrderRepository orderRepository;
 
+    private ItemPriceAndSizeService itemPriceAndSizeService;
+
     @Test
     void findAUnitAllOrdersUnderOrderStatus() throws Exception {
 
 
+        ItemPriceAndSize itemPriceAndSize = new ItemPriceAndSize();
+        itemPriceAndSize.setPrice(BigDecimal.valueOf(200));
+        itemPriceAndSize.setSize("400ml");
+        var savedItemPriceAndSizes = itemPriceAndSizeService.save(itemPriceAndSize);
 
-
+        ItemPriceAndSize itemPriceAndSize1 = new ItemPriceAndSize();
+        itemPriceAndSize1.setSize("300ml");
+        itemPriceAndSize1.setPrice(BigDecimal.valueOf(500));
+       var savedItemPriceAndSizes1= itemPriceAndSizeService.save(itemPriceAndSize1);
+        List<ItemPriceAndSize> list = new ArrayList<>();
+        list.add(savedItemPriceAndSizes);
+        list.add(savedItemPriceAndSizes1);
         Item item = new Item();
+        item.setListOfUnitsAvailable(List.of(new String[]{"SUNDERLAND", "LONDON", "NEWCASTLE", "GLOUCESTERSHIRE", "COVENTRY"}));
+        item.setItemTitle("Amala");
+        item.setItemCategory(ItemCategory.SWALLOW);
+        item.setItemPriceAndSize(new ArrayList<>(list));
         var savedItem = itemService.save(item);
         Item item1 = new Item();
         item1.setItemCategory(ItemCategory.valueOf("DRINKS"));
-
+        item1.setListOfUnitsAvailable(List.of(new String[]{"SUNDERLAND", "LONDON", "NEWCASTLE", "GLOUCESTERSHIRE", "COVENTRY"}));
+        item1.setItemPriceAndSize(new ArrayList<>(list));
+        item1.setItemTitle("Coke");
         var secondSavedItem = itemService.save(item1);
         List<OrderItemRequest> orderRequestList = new ArrayList<>();
 
@@ -77,9 +93,11 @@ class OrderServiceImpTest {
 
         OrderRequest orderRequest = new OrderRequest();
         orderRequest.setOrderItemRequestList(new ArrayList<>(orderRequestList));
-        orderRequest.setUnitName("LONDON");
+        orderRequest.setUnitName("SUNDERLAND");
         orderRequest.setOrderFrom("ONLINE");
         orderRequest.setTotal(900L);
+        orderRequest.setPaymentType("CASH");
+
 
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/temisplace/Orders/makeOrder")
@@ -137,7 +155,7 @@ class OrderServiceImpTest {
         unitOrderUnderOrderStatusRequest.setUnitName("LONDON");
         unitOrderUnderOrderStatusRequest.setOrderStatus("COMPLETED");
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/temisplace/unitAllOrdersUnderOrderStatus")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/temisplace/unitAllDailyOrdersUnderOrderStatus")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(unitOrderUnderOrderStatusRequest)))
                 .andExpect(MockMvcResultMatchers.status().is(200));

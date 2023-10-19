@@ -1,4 +1,4 @@
-package com.dansaki.com.temisplacebackend.controllers.registrationController;
+package com.dansaki.com.temisplacebackend.controllers.authenticationController.registrationController;
 
 
 import com.dansaki.com.temisplacebackend.dtos.request.RegistrationRequest;

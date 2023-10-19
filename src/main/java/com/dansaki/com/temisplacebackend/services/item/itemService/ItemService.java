@@ -5,6 +5,7 @@ import com.dansaki.com.temisplacebackend.dtos.request.AUnitItemsUnderItemCategor
 import com.dansaki.com.temisplacebackend.dtos.request.AllItemsUnderAnItemCategoryRequest;
 import com.dansaki.com.temisplacebackend.dtos.request.AvailableUnitItemUnderItemCategoryRequest;
 import com.dansaki.com.temisplacebackend.dtos.request.PaginationRequest;
+import com.dansaki.com.temisplacebackend.utils.ApiResponse;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,4 +26,7 @@ public interface ItemService {
 
     List<Item> findAUnitAllItemsUnderItemCategory(AUnitItemsUnderItemCategoryRequest aUnitItemsUnderItemCategoryRequest);
 
+    Optional<Item> findByItemTitle(String itemTitle);
+
+    ApiResponse deleteItemById(Long id);
 }

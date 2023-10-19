@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,4 +45,17 @@ public class UserServiceImp implements UserService {
         Page<User> listOfPaginatedUsers = userRepository.findAll(pageable);
         return listOfPaginatedUsers.getContent();
     }
+
+    @Override
+    public List<User> findAllRegisteredCustomerForAParticularDate(LocalDate registrationDate) {
+
+       return userRepository.findAllByRegistrationDate(registrationDate);
+    }
+
+    @Override
+    public Optional<User> findUserById(Long userId) {
+        return userRepository.findById(userId);
+    }
+
+
 }

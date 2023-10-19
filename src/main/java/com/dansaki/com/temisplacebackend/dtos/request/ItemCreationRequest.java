@@ -23,5 +23,5 @@ public class ItemCreationRequest {
     private String allergy;
     private List<String> listOfUnitsAvailable =
             List.of(new String[]{ "SUNDERLAND", "LONDON", "NEWCASTLE", "GLOUCESTERSHIRE", "COVENTRY"});
-    private int itemSize;
+    private String itemSize;
 }

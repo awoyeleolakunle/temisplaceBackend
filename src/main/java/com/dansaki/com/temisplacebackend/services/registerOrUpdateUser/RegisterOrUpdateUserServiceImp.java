@@ -29,15 +29,17 @@ public class RegisterOrUpdateUserServiceImp implements RegisterOrUpdateUserServi
     @SneakyThrows
     @Override
     public ApiResponse registerOrUpdateUser(RegisterOrUpdateUserRequest registerOrUpdateUserRequest) {
+        if(!userAlreadyExists(registerOrUpdateUserRequest.getEmailAddress())){return GenerateApiResponse.incorrectDetails(GenerateApiResponse.INCORRECT_DETAILS);}
         if(userAlreadyExists(registerOrUpdateUserRequest.getEmailAddress())){
             UserProfileUpdateRequest userProfileUpdateRequest = modelMapper.map(registerOrUpdateUserRequest, UserProfileUpdateRequest.class);
             updateUserProfileService.updateUserProfile(userProfileUpdateRequest);
+            return GenerateApiResponse.updateSuccessful(GenerateApiResponse.STATUS_UPDATED_SUCCESSFULLY);
         }
         else{
             RegistrationRequest registrationRequest = modelMapper.map(registerOrUpdateUserRequest, RegistrationRequest.class);
             registrationService.register(registrationRequest);
+            return GenerateApiResponse.createdResponse(GenerateApiResponse.USER_CREATED_SUCCESSFULLY);
         }
-        return GenerateApiResponse.incorrectDetails(GenerateApiResponse.INCORRECT_DETAILS);
     }
 
     private boolean userAlreadyExists(String emailAddress) {

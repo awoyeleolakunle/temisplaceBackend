@@ -19,6 +19,17 @@ public class GenerateApiResponse {
     public static final String INCORRECT_DETAILS = "The details you entered are incorrect";
     public static final String ITEM_SUCCESSFULLY_REMOVED = "Item has been successfully removed from your unit";
     public static final String ITEM_SUCCESSFULLY_ADDED = "Item has been successfully added to your unit";
+    public static final String INVALID_CREDENTIALS = "The credentials You Entered Are Invalid";
+    public static final String VERIFICATION_SUCCESSFUL ="Your Account has been successfully verified" ;
+    public static final String VERIFY_THAT_ITS_YOU = "Verify Otp code" ;
+    public static final Object OTP_SENT_SUCCESSFULLY = "Kindly check your email address for your otp";
+    public static final String ITEM_NOT_FOUND = "No Item found with the given item title";
+    public static final String ITEM_UPDATED_SUCCESSFULLY ="Item updated successfully" ;
+    public static final String DELETED_SUCCESSFULLY = "Successfully deleted";
+    public static final String FOOTER_CREATED_SUCCESSFULLY = "Footer added successfully" ;
+    public static final String FOOTER_UPDATED_SUCCESSFULLY = "Footer successfully updated ";
+    public static String ItEM_CATEGORY_AND_IMAGE_SUCCESSFULLY_UPLOADED = "Item category name and image successfully uploaded";
+    public static String ItEM_CATEGORY_IMAGE_SUCCESSFULLY_UPDATED = "Item Category image successfully updated";
 
 
     public static ApiResponse createdResponse(Object data){
@@ -116,6 +127,33 @@ public class GenerateApiResponse {
                 .data(data)
                 .httpStatus(HttpStatus.BAD_REQUEST)
                 .statusCode(HttpStatus.BAD_REQUEST.value())
+                .isSuccessful(false)
+                .build();
+    }
+
+    public static ApiResponse okResponse(Object data) {
+        return ApiResponse.builder()
+                .data(data)
+                .httpStatus(HttpStatus.OK)
+                .statusCode(HttpStatus.OK.value())
+                .isSuccessful(true)
+                .build();
+    }
+
+    public static ApiResponse NoSuchItem(Object data) {
+        return ApiResponse.builder()
+                .data(data)
+                .httpStatus(HttpStatus.BAD_REQUEST)
+                .statusCode(HttpStatus.BAD_REQUEST.value())
+                .isSuccessful(false)
+                .build();
+    }
+
+    public static ApiResponse deleteSuccessful(Object data) {
+        return ApiResponse.builder()
+                .data(data)
+                .httpStatus(HttpStatus.OK)
+                .statusCode(HttpStatus.OK.value())
                 .isSuccessful(false)
                 .build();
     }

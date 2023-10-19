@@ -21,11 +21,9 @@ public class OrderItemDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long orderItemDetailsId;
 
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Item item;
     private int quantity;
     private BigDecimal subTotal = BigDecimal.ZERO;
-
 
 }

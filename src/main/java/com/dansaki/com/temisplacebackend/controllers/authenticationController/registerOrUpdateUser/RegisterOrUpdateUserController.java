@@ -1,4 +1,4 @@
-package com.dansaki.com.temisplacebackend.controllers.registerOrUpdateUser;
+package com.dansaki.com.temisplacebackend.controllers.authenticationController.registerOrUpdateUser;
 
 
 import com.dansaki.com.temisplacebackend.dtos.request.RegisterOrUpdateUserRequest;

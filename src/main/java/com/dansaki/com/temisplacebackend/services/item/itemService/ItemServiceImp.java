@@ -7,6 +7,8 @@ import com.dansaki.com.temisplacebackend.dtos.request.AUnitItemsUnderItemCategor
 import com.dansaki.com.temisplacebackend.dtos.request.AllItemsUnderAnItemCategoryRequest;
 import com.dansaki.com.temisplacebackend.dtos.request.AvailableUnitItemUnderItemCategoryRequest;
 import com.dansaki.com.temisplacebackend.dtos.request.PaginationRequest;
+import com.dansaki.com.temisplacebackend.utils.ApiResponse;
+import com.dansaki.com.temisplacebackend.utils.GenerateApiResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,7 +18,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -106,5 +107,16 @@ public class ItemServiceImp implements ItemService{
         if(allItemsByItemCategory.isEmpty()) { return allItemsByItemCategory;}
 
         return allItemsByItemCategory.stream().filter(item -> item.getListOfUnitsAvailable().contains(aUnitItemsUnderItemCategoryRequest.getUnitName().toUpperCase())).toList();
+    }
+
+    @Override
+    public Optional<Item> findByItemTitle(String itemTitle) {
+        return itemRepository.findByItemTitle(itemTitle);
+    }
+
+    @Override
+    public ApiResponse deleteItemById(Long id) {
+        itemRepository.deleteById(id);
+        return GenerateApiResponse.deleteSuccessful(GenerateApiResponse.DELETED_SUCCESSFULLY);
     }
 }

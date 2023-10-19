@@ -19,8 +19,8 @@ public class UnitOrdersManagementControllers {
 
     private final OrderService orderService;
 
-    @PostMapping("unitAllOrdersUnderOrderStatus")
-    public ResponseEntity<List<Orders>> fetchUnitAllOrdersUnderOrderStatus( @RequestBody UnitOrderUnderOrderStatusRequest unitOrderUnderOrderStatusRequest){
-        return new ResponseEntity<>(orderService.findAUnitAllOrdersUnderOrderStatus(unitOrderUnderOrderStatusRequest), HttpStatus.OK);
+    @PostMapping("unitAllDailyOrdersUnderOrderStatus")
+    public ResponseEntity<List<Orders>> fetchUnitAllDailyOrdersUnderOrderStatus( @RequestBody UnitOrderUnderOrderStatusRequest unitOrderUnderOrderStatusRequest){
+        return new ResponseEntity<>(orderService.findAUnitAllDailyOrdersUnderOrderStatus(unitOrderUnderOrderStatusRequest), HttpStatus.OK);
     }
 }

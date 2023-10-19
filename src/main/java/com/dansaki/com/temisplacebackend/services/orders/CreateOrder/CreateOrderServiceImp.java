@@ -1,17 +1,14 @@
 package com.dansaki.com.temisplacebackend.services.orders.CreateOrder;
 
 
-import com.dansaki.com.temisplacebackend.data.enums.ActiveOrderStatus;
-import com.dansaki.com.temisplacebackend.data.enums.OrderFrom;
-import com.dansaki.com.temisplacebackend.data.enums.OrderStatus;
-import com.dansaki.com.temisplacebackend.data.enums.UnitName;
+import com.dansaki.com.temisplacebackend.data.enums.*;
 import com.dansaki.com.temisplacebackend.data.models.Item;
 import com.dansaki.com.temisplacebackend.data.models.Orders;
 import com.dansaki.com.temisplacebackend.data.models.OrderItemDetails;
 import com.dansaki.com.temisplacebackend.dtos.request.OrderItemRequest;
 import com.dansaki.com.temisplacebackend.dtos.request.OrderRequest;
 import com.dansaki.com.temisplacebackend.services.item.itemService.ItemService;
-import com.dansaki.com.temisplacebackend.services.orders.orderItemDetails.OrderItemDetailsService;
+import com.dansaki.com.temisplacebackend.services.unitAndOrderDetails.orderItemDetails.OrderItemDetailsService;
 import com.dansaki.com.temisplacebackend.services.orders.orderService.OrderService;
 import com.dansaki.com.temisplacebackend.utils.ApiResponse;
 import com.dansaki.com.temisplacebackend.utils.GenerateApiResponse;
@@ -57,12 +54,16 @@ public class CreateOrderServiceImp implements CreateOrderService{
         newOrder.setOrderedTime(LocalDateTime.now());
         newOrder.setOrderStatus(OrderStatus.ACTIVE);
         newOrder.setActiveOrderStatus(ActiveOrderStatus.ACCEPT_AND_PROCESSING);
+        newOrder.setPaymentType(PaymentType.valueOf(orderRequest.getPaymentType().toUpperCase()));
         newOrder.setOrderFrom(OrderFrom.valueOf(orderRequest.getOrderFrom()));
-        orderService.save(newOrder);
+        newOrder.setNumberOfAllItemQuantityOrdered(orderRequest.getNumberOfAllItemQuantityOrdered());
 
+        if(orderRequest.getOrderFrom().equals(OrderFrom.INSTORE.name())){
+            newOrder.setOrderStatus(OrderStatus.COMPLETED);
+        }
+        orderService.save(newOrder);
 
         return GenerateApiResponse.createdResponse(newOrder);
     }
-
 
 }

@@ -1,6 +1,7 @@
 package com.dansaki.com.temisplacebackend.data.models;
 
 
+import com.dansaki.com.temisplacebackend.data.enums.BlogCategory;
 import com.dansaki.com.temisplacebackend.data.enums.BlogStatus;
 import com.dansaki.com.temisplacebackend.data.enums.BlogType;
 import com.dansaki.com.temisplacebackend.data.enums.PublishStatus;
@@ -33,4 +34,5 @@ public class BlogPost {
     private BlogType blogType;
     @Enumerated(EnumType.STRING)
     private BlogStatus blogStatus;
+    private BlogCategory blogCategory;
 }

@@ -1,10 +1,7 @@
 package com.dansaki.com.temisplacebackend.data.models;
 
 
-import com.dansaki.com.temisplacebackend.data.enums.ActiveOrderStatus;
-import com.dansaki.com.temisplacebackend.data.enums.OrderFrom;
-import com.dansaki.com.temisplacebackend.data.enums.OrderStatus;
-import com.dansaki.com.temisplacebackend.data.enums.UnitName;
+import com.dansaki.com.temisplacebackend.data.enums.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,6 +33,9 @@ public class Orders {
     private ActiveOrderStatus activeOrderStatus;
     @Enumerated(EnumType.STRING)
     private OrderFrom orderFrom;
+    @Enumerated(EnumType.STRING)
+    private PaymentType paymentType;
     private LocalDateTime orderedTime;
+    private int numberOfAllItemQuantityOrdered;
 }
 

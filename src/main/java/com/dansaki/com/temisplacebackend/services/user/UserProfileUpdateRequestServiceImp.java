@@ -4,6 +4,7 @@ import com.dansaki.com.temisplacebackend.data.enums.UserStatus;
 import com.dansaki.com.temisplacebackend.data.models.Roles;
 import com.dansaki.com.temisplacebackend.data.models.User;
 import com.dansaki.com.temisplacebackend.dtos.request.UserProfileUpdateRequest;
+import com.dansaki.com.temisplacebackend.dtos.request.UserStatusUpdateRequest;
 import com.dansaki.com.temisplacebackend.utils.ApiResponse;
 import com.dansaki.com.temisplacebackend.utils.GenerateApiResponse;
 import lombok.AllArgsConstructor;
@@ -20,24 +21,39 @@ public class UserProfileUpdateRequestServiceImp implements UpdateUserProfileServ
     @Override
     public ApiResponse updateUserProfile(UserProfileUpdateRequest userProfileUpdateRequest) {
 
-        if(findUser(userProfileUpdateRequest.getEmailAddress())==null){ return GenerateApiResponse.userNotFound(GenerateApiResponse.NO_USER_FOUND);}
+        User foundUser =  findUser(userProfileUpdateRequest.getEmailAddress());
+        if( foundUser==null)
+        { return GenerateApiResponse.userNotFound(GenerateApiResponse.NO_USER_FOUND);}
 
-        updateUser(userProfileUpdateRequest);
-        return GenerateApiResponse.createdResponse(GenerateApiResponse.USER_CREATED_SUCCESSFULLY);
+        else{
+        updateUser(userProfileUpdateRequest, foundUser);
+        return GenerateApiResponse.createdResponse(GenerateApiResponse.USER_CREATED_SUCCESSFULLY);}
+
     }
 
-    private void updateUser(UserProfileUpdateRequest userProfileUpdateRequest) {
+    @Override
+    public ApiResponse updateUserStatus(UserStatusUpdateRequest userStatusUpdateRequest) {
+        User user = findUserById(userStatusUpdateRequest.getUserId());
+        user.setUserStatus(UserStatus.valueOf(userStatusUpdateRequest.getUserStatus().toUpperCase()));
+        userService.save(user);
+        return GenerateApiResponse.UpdateStatus(GenerateApiResponse.STATUS_UPDATED_SUCCESSFULLY);
+    }
 
-        User user = findUser(userProfileUpdateRequest.getEmailAddress());
+    private User findUserById(Long userId) {
+         return userService.findUserById(userId).orElseThrow(null);
+    }
+
+    private void updateUser(UserProfileUpdateRequest userProfileUpdateRequest, User user) {
+
 
         if(userProfileUpdateRequest.getUserStatus()!=null){
             System.out.println( "I'm the user status string " + userProfileUpdateRequest.getUserStatus());
-            user.setUserStatus(UserStatus.valueOf(userProfileUpdateRequest.getUserStatus()));
+            user.setUserStatus(UserStatus.valueOf(userProfileUpdateRequest.getUserStatus().toUpperCase()));
         }
         if(userProfileUpdateRequest.getRoles()!=null){
             Set<Roles> setOfRoles = new HashSet<>();
             setOfRoles.add(Roles.valueOf(userProfileUpdateRequest.getRoles()));
-            user.setRoles(setOfRoles);
+            user.setRoles(new HashSet<>(setOfRoles));
         }
 
         if(userProfileUpdateRequest.getCity()!=null){

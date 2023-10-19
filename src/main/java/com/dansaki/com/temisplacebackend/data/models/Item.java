@@ -31,5 +31,5 @@ public class Item {
     private PublishingType publishingType;
     private String allergy;
     private List<String> listOfUnitsAvailable;
-    private int itemSize;
+    private String itemSize;
 }

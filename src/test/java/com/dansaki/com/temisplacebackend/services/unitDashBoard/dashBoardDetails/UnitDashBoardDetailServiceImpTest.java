@@ -1,9 +1,6 @@
 package com.dansaki.com.temisplacebackend.services.unitDashBoard.dashBoardDetails;
 
-import com.dansaki.com.temisplacebackend.data.enums.ItemCategory;
-import com.dansaki.com.temisplacebackend.data.enums.OrderFrom;
-import com.dansaki.com.temisplacebackend.data.enums.OrderStatus;
-import com.dansaki.com.temisplacebackend.data.enums.UnitName;
+import com.dansaki.com.temisplacebackend.data.enums.*;
 import com.dansaki.com.temisplacebackend.data.models.Item;
 import com.dansaki.com.temisplacebackend.data.models.ItemPriceAndSize;
 import com.dansaki.com.temisplacebackend.data.models.Orders;
@@ -13,7 +10,6 @@ import com.dansaki.com.temisplacebackend.dtos.request.ItemCreationRequest;
 import com.dansaki.com.temisplacebackend.dtos.request.OrderItemRequest;
 import com.dansaki.com.temisplacebackend.dtos.request.OrderRequest;
 import com.dansaki.com.temisplacebackend.dtos.request.PaginationRequest;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +26,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
@@ -94,6 +88,7 @@ class UnitDashBoardDetailServiceImpTest {
         swallowOrderRequest.setOrderItemRequestList(List.of(swallowOrderItemRequest));
         swallowOrderRequest.setTotal(1500L);
         swallowOrderRequest.setOrderFrom("ONLINE");
+        swallowOrderRequest.setPaymentType("CASH");
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/temisplace/Orders/makeOrder")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -155,6 +150,7 @@ class UnitDashBoardDetailServiceImpTest {
         orderRequest.setUnitName("LONDON");
         orderRequest.setOrderFrom("ONLINE");
         orderRequest.setTotal(10000L);
+        orderRequest.setPaymentType("CREDIT_DEBIT_CARD");
 
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/temisplace/Orders/makeOrder")
@@ -192,6 +188,7 @@ class UnitDashBoardDetailServiceImpTest {
         orders.setOrderStatus(OrderStatus.COMPLETED);
         orders.setTotal(BigDecimal.valueOf(500));
         orders.setOrderFrom(OrderFrom.ONLINE);
+        orders.setPaymentType(PaymentType.valueOf("CREDIT_DEBIT_CARD"));
         orderRepository.save(orders);
 
 

@@ -18,4 +18,6 @@ public class OrderRequest {
     private Long total;
     private String unitName;
     private String orderFrom;
+    private String paymentType;
+    private int numberOfAllItemQuantityOrdered;
 }

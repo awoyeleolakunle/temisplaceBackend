@@ -1,4 +1,4 @@
-package com.dansaki.com.temisplacebackend.services.orders.orderItemDetails;
+package com.dansaki.com.temisplacebackend.services.unitAndOrderDetails.orderItemDetails;
 
 import com.dansaki.com.temisplacebackend.data.models.OrderItemDetails;
 import com.dansaki.com.temisplacebackend.data.repositories.OrderItemDetailsRepository;
