@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,6 +33,11 @@ public class ItemCategoryNameAndImagesServiceImp implements ItemCategoryNameAndI
             return GenerateApiResponse.UpdateStatus(GenerateApiResponse.ItEM_CATEGORY_IMAGE_SUCCESSFULLY_UPDATED);
         }
 
+    }
+
+    @Override
+    public List<ItemCategoryNameAndImage> findAllItemCategoryNamesAndImages() {
+        return itemCategoryNameAndImageRepository.findAll();
     }
 
     private void updateCategoryUrl(ItemCategoryNameAndImage itemCategoryNameAndImage, ItemCategoryNameAndImageRequest itemCategoryNameAndImageRequest) {

@@ -37,5 +37,7 @@ public class Orders {
     private PaymentType paymentType;
     private LocalDateTime orderedTime;
     private int numberOfAllItemQuantityOrdered;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private BillingInformation billingInformation;
 }
 
