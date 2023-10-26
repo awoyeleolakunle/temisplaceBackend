@@ -34,6 +34,7 @@ public class ItemPriceAndSizeServiceImp implements ItemPriceAndSizeService{
          List<String> updateAvailableUnits = listOfUnitsAvailable.stream().filter(item -> !item.equals(updateAvailableItemSizeAndPriceInAunitRequest.getUnitName())).toList();
 
          itemPriceAndSize.get().setListOfUnitsAvailable(new ArrayList<>(updateAvailableUnits));
+         itemPriceAndSize.get().setIsAvailable(Boolean.FALSE);
          itemPriceAndSizeRepository.save(itemPriceAndSize.get());
 
          return GenerateApiResponse.UpdateStatus(GenerateApiResponse.ITEM_SIZE_SUCCESSFULLY_REMOVED);
@@ -54,6 +55,7 @@ public class ItemPriceAndSizeServiceImp implements ItemPriceAndSizeService{
 
             updateAvailableUnits.add(updateAvailableItemSizeAndPriceInAunitRequest.getUnitName());
             itemPriceAndSize.get().setListOfUnitsAvailable(new ArrayList<>(updateAvailableUnits));
+            itemPriceAndSize.get().setIsAvailable(Boolean.TRUE);
             itemPriceAndSizeRepository.save(itemPriceAndSize.get());
 
             return GenerateApiResponse.UpdateStatus(GenerateApiResponse.ITEM_SIZE_SUCCESSFULLY_ADDED);

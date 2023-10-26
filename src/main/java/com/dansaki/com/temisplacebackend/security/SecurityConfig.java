@@ -27,7 +27,7 @@ private final String[] allowedEndPoints ={"/api/v1/temisplace/blog/blogPostCreat
         "/api/v1/temisplace/Orders/orderCompletion", "/api/v1/temisplace/Orders/orderCancellation",
         "/api/v1/temisplace/dashBoardInfo", "/api/v1/temisplace/allBlogPost",
         "/api/v1/temisplace/paginatedUserList", "/api/v1/temisplace/itemCreation",
-        "/api/v1/temisplace/itemCreationOrUpdate",
+        "/api/v1/temisplace/itemCreationOrUpdate","/api/v1/temisplace/itemFetchById",
         "/api/v1/temisplace/itemDeletionById",
         "/api/v1/temisplace/updateUser","/api/v1/temisplace/userStatusUpdate", "/api/v1/temisplace/allItems",
         "/api/v1/temisplace/registerOrUpdateUser"

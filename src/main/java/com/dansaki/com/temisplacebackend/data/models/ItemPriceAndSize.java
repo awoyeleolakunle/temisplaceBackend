@@ -26,5 +26,6 @@ public class ItemPriceAndSize {
     private String size;
     private List<String> listOfUnitsAvailable =
             List.of(new String[]{ "SUNDERLAND", "LONDON", "NEWCASTLE", "GLOUCESTERSHIRE", "COVENTRY"});
+    private Boolean isAvailable = true;
 }
 
