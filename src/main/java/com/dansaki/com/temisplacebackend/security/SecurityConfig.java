@@ -33,7 +33,8 @@ private final String[] allowedEndPoints ={"/api/v1/temisplace/blog/blogPostCreat
         "/api/v1/temisplace/registerOrUpdateUser"
         ,"/api/v1/temisplace/unitDashboardDetails", "/api/v1/temisplace/unitItemAvailabilityRemoval",
         "/api/v1/temisplace/unitItemAvailabilityAddition", "/api/v1/temisplace/availableUnitItemsUnderItemCategory",
-        "/api/v1/temisplace/allItemsUnderAnItemCategory", "/api/v1/temisplace/unitOrderDashBoardDetails",
+        "/api/v1/temisplace/allItemsUnderAnItemCategory", "/api/v1/temisplace/itemSizeAndPriceAvailabilityRemovalFromAUnit",
+        "/api/v1/temisplace/itemSizeAndPriceAvailabilityAdditionToAUnit", "/api/v1/temisplace/unitOrderDashBoardDetails",
         "/api/v1/temisplace/unitAllDailyOrdersUnderOrderStatus", "/api/v1/temisplace/namesOfAllItemCategory",
         "/api/v1/temisplace/AUnitAllItemsUnderItemCategory", "/api/v1/temisplace/activeOrderStatusAndOrderStatusManagement",
         "/api/v1/temisplace/footerCreationOrUpdate", "/api/v1/temisplace/itemCategoryNameAndImageCreation",
