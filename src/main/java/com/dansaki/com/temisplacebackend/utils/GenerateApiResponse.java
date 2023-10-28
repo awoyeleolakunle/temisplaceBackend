@@ -30,6 +30,8 @@ public class GenerateApiResponse {
     public static final String FOOTER_UPDATED_SUCCESSFULLY = "Footer successfully updated ";
     public static final String ITEM_SIZE_SUCCESSFULLY_ADDED = "Item size has been successfully added to your unit";
     public static final String ITEM_SIZE_SUCCESSFULLY_REMOVED ="Item has been successfully removed from your unit" ;
+    public static final String HOME_PAGE_DISPLAY_DEACTIVATED = "Home Page Display Deactivated";
+    public static final String HOME_PAGE_DISPLAY_ACTIVATED = "Home Page Display Activated";
     public static String ItEM_CATEGORY_AND_IMAGE_SUCCESSFULLY_UPLOADED = "Item category name and image successfully uploaded";
     public static String ItEM_CATEGORY_IMAGE_SUCCESSFULLY_UPDATED = "Item Category image successfully updated";
 
