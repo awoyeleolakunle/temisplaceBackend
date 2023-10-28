@@ -33,5 +33,6 @@ public class Item {
     private List<String> listOfUnitsAvailable;
     private String itemOverView;
     private String itemSize;
+    private Boolean isDisplay = false;
 
 }
