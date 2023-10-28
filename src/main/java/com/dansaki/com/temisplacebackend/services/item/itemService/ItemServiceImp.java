@@ -35,6 +35,17 @@ public class ItemServiceImp implements ItemService{
     }
 
     @Override
+    public Item findByItemId(Long id) {
+        var item = itemRepository.findById(id);
+        if(item.isPresent()){
+        return item.get();
+        }
+        else {
+            return null;
+        }
+    }
+
+    @Override
     public List<Item> findAllPaginatedItems(PaginationRequest paginationRequest) {
         Pageable pageable = PageRequest.of(paginationRequest.getPageNumber(), paginationRequest.getPageSize());
         Page<Item> pages = itemRepository.findAll(pageable);

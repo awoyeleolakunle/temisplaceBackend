@@ -27,16 +27,18 @@ private final String[] allowedEndPoints ={"/api/v1/temisplace/blog/blogPostCreat
         "/api/v1/temisplace/Orders/orderCompletion", "/api/v1/temisplace/Orders/orderCancellation",
         "/api/v1/temisplace/dashBoardInfo", "/api/v1/temisplace/allBlogPost",
         "/api/v1/temisplace/paginatedUserList", "/api/v1/temisplace/itemCreation",
-        "/api/v1/temisplace/itemCreationOrUpdate",
+        "/api/v1/temisplace/itemCreationOrUpdate","/api/v1/temisplace/itemFetchById",
         "/api/v1/temisplace/itemDeletionById",
         "/api/v1/temisplace/updateUser","/api/v1/temisplace/userStatusUpdate", "/api/v1/temisplace/allItems",
         "/api/v1/temisplace/registerOrUpdateUser"
         ,"/api/v1/temisplace/unitDashboardDetails", "/api/v1/temisplace/unitItemAvailabilityRemoval",
         "/api/v1/temisplace/unitItemAvailabilityAddition", "/api/v1/temisplace/availableUnitItemsUnderItemCategory",
-        "/api/v1/temisplace/allItemsUnderAnItemCategory", "/api/v1/temisplace/unitOrderDashBoardDetails",
+        "/api/v1/temisplace/allItemsUnderAnItemCategory", "/api/v1/temisplace/itemSizeAndPriceAvailabilityRemovalFromAUnit",
+        "/api/v1/temisplace/itemSizeAndPriceAvailabilityAdditionToAUnit", "/api/v1/temisplace/unitOrderDashBoardDetails",
         "/api/v1/temisplace/unitAllDailyOrdersUnderOrderStatus", "/api/v1/temisplace/namesOfAllItemCategory",
         "/api/v1/temisplace/AUnitAllItemsUnderItemCategory", "/api/v1/temisplace/activeOrderStatusAndOrderStatusManagement",
-        "/api/v1/temisplace/footerCreationOrUpdate", "/api/v1/temisplace/itemCategoryNameAndImageCreation"};
+        "/api/v1/temisplace/footerCreationOrUpdate", "/api/v1/temisplace/itemCategoryNameAndImageCreation",
+        "/api/v1/temisplace/allItemCategoryNamesAndImages"};
 
 @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

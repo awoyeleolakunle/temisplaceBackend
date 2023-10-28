@@ -1,6 +1,7 @@
 package com.dansaki.com.temisplacebackend.dtos.request;
 
 
+import com.dansaki.com.temisplacebackend.data.models.BillingInformation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,4 +21,5 @@ public class OrderRequest {
     private String orderFrom;
     private String paymentType;
     private int numberOfAllItemQuantityOrdered;
+    private BillingInformation billingInformation;
 }

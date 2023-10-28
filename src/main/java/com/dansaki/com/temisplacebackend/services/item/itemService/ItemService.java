@@ -14,6 +14,8 @@ public interface ItemService {
     Item save(Item item);
     Optional<Item> findById(Long id);
 
+    Item findByItemId(Long id);
+
     List<Item> findAllPaginatedItems(PaginationRequest paginationRequest);
     List<Item> findAllItems();
 
