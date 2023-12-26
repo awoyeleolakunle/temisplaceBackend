@@ -23,7 +23,6 @@ public class AUnitAllHomePageDisplayItemsController {
  public ResponseEntity<List<Item>> returnAunitAllHomePageDisplayedEnabledItem(@RequestParam String itemCategory , @RequestParam String unitName ){
 
   return new ResponseEntity<>(itemDisplayService.findAUnitAllHomePagedDisplayEnabledItemUnderItemCategory(itemCategory, unitName), HttpStatus.OK);
-  
  }
 
 }

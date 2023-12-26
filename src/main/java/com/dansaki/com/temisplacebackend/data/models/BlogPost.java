@@ -28,11 +28,12 @@ public class BlogPost {
     private LocalTime publishTime;
     @Enumerated(EnumType.STRING)
     private PublishStatus publishStatus;
+    @Column(length = 2000)
     private String blogContent;
     private String postImageUrl;
     @Enumerated(EnumType.STRING)
     private BlogType blogType;
     @Enumerated(EnumType.STRING)
     private BlogStatus blogStatus;
-    private BlogCategory blogCategory;
+    private BlogCategory blogPostCategory;
 }

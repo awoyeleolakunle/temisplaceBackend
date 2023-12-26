@@ -24,5 +24,5 @@ public class BlogCreationRequest {
     private String blogContent;
     private String postImageUrl;
     private String blogType;
-    private BlogStatus blogStatus;
+    private String blogStatus;
 }

@@ -154,4 +154,13 @@ public class OrderServiceImp implements OrderService{
         LocalDateTime endOfPreviousDay = startOfToday.minusSeconds(1);
         return orderRepository.findAllByOrderedTimeBetweenAndOrderStatus(startOfPreviousDay, endOfPreviousDay, orderStatus);
     }
+
+
+    public List<Orders> findAUnitDailyOrdersUnderOrderStatus(String unitName, OrderStatus orderStatus) {
+        LocalDateTime currentTime = LocalDateTime.now();
+        LocalDateTime startOfToday = currentTime.withHour(0).withMinute(0).withSecond(0);
+        return orderRepository.findAllByUnitNameAndOrderedTimeBetweenAndOrderStatus(UnitName.valueOf(unitName), startOfToday, currentTime, orderStatus) ;
+    }
+
+
 }

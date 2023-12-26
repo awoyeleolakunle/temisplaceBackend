@@ -16,8 +16,8 @@ public class UpdateBlogPostServiceImp implements UpdateBlogPostService{
 
     private final BlogPostService blogPostService;
     @Override
-    public ApiResponse updateBlogPost(Long id, BlogPostUpdateRequest blogPostUpdateRequest) {
-       Optional<BlogPost> blogPost = blogPostService.findPostById(id);
+    public ApiResponse updateBlogPost( BlogPostUpdateRequest blogPostUpdateRequest) {
+       Optional<BlogPost> blogPost = blogPostService.findByPostTitle(blogPostUpdateRequest.getPostTitle());
        if(blogPost.isEmpty()) return GenerateApiResponse.blogPostNotFound(GenerateApiResponse.BLOG_POST_NOT_FOUND);
        updatePost(blogPost.get(), blogPostUpdateRequest);
         return GenerateApiResponse.updateSuccessful(GenerateApiResponse.STATUS_UPDATED_SUCCESSFULLY);

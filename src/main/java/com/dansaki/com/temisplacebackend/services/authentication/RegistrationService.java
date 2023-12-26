@@ -58,7 +58,7 @@ public ApiResponse register(RegistrationRequest registrationRequest) throws User
         User savedUser =   userService.save(user);
 
     UserDetails userDetails = userDetailsService.loadUserByUsername(savedUser.getEmailAddress());
-    String jwt = jwtService.generateToken(userDetails);
+    String jwt = jwtService.generateToken(userDetails, savedUser);
 
     return GenerateApiResponse.createdResponse(GenerateApiResponse.BEARER+jwt);
 }
@@ -71,8 +71,11 @@ public ApiResponse register(RegistrationRequest registrationRequest) throws User
         UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getEmailAddress());
         System.out.println("I'm the userDetails" + userDetails.getUsername());
 
+
+
         if(userDetails== null){ return GenerateApiResponse.incorrectDetails(GenerateApiResponse.NO_USER_FOUND);}
-        String jwt = jwtService.generateToken(userDetails);
+        User foundUser = userService.findUserByEmailAddress(userDetails.getUsername());
+        String jwt = jwtService.generateToken(userDetails, foundUser );
         saveToken(jwt, loginRequest.getEmailAddress());
         return GenerateApiResponse.okResponse("Bearer "+jwt);
     }
