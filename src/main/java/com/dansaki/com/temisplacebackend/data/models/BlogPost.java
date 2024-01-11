@@ -5,7 +5,6 @@ import com.dansaki.com.temisplacebackend.data.enums.BlogCategory;
 import com.dansaki.com.temisplacebackend.data.enums.BlogStatus;
 import com.dansaki.com.temisplacebackend.data.enums.BlogType;
 import com.dansaki.com.temisplacebackend.data.enums.PublishStatus;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -11,7 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BlogPostStatusUpdateRequest {
-
     private Long id;
     private String blogPostStatus;
 }

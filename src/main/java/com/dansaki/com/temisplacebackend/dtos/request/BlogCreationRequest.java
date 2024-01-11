@@ -25,4 +25,5 @@ public class BlogCreationRequest {
     private String postImageUrl;
     private String blogType;
     private String blogStatus;
+    private String blogPostCategory;
 }

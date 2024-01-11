@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class BlogPostStatusUpdateController {
 
-
     private final BlogPostStatusUpdateService blogPostStatusUpdateService;
 
     @PatchMapping ("blogPostStatusUpdate")
