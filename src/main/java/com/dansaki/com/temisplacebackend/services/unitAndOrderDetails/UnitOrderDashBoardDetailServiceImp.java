@@ -53,7 +53,7 @@ public class UnitOrderDashBoardDetailServiceImp implements UnitOrderDashBoardDet
         List<Orders> listOfCompletedOrders = orderService.findAUnitAllOrdersUnderOrderStatusForToday(unitName, OrderStatus.COMPLETED);
        if(listOfCompletedOrders.isEmpty()){ return BigDecimal.ZERO;}
         return listOfCompletedOrders.stream()
-                .map(orders -> orders.getTotal().add(BigDecimal.TWO))
+                .map(orders -> orders.getTotal().add(BigDecimal.ZERO))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 

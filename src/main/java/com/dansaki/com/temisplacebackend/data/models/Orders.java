@@ -37,7 +37,16 @@ public class Orders {
     private PaymentType paymentType;
     private LocalDateTime orderedTime;
     private int numberOfAllItemQuantityOrdered;
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private BillingInformation billingInformation;
+    private String firstName;
+    private String lastName;
+    private String countryName;
+    private String district;
+    private String homeNumber;
+    private String apartment;
+    private String city;
+    private String postCode;
+    private String phoneNumber;
+    private String emailAddress;
+    private String orderNote;
 }
 

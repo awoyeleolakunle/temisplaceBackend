@@ -1,4 +1,4 @@
-package com.dansaki.com.temisplacebackend.controllers.otpControllers;
+package com.dansaki.com.temisplacebackend.controllers.ordersControllers.otpControllers;
 
 
 import com.dansaki.com.temisplacebackend.data.models.VerificationToken;

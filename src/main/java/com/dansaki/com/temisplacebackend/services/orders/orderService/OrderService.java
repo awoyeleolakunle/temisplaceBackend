@@ -46,6 +46,8 @@ public interface OrderService {
 
     List<Orders> findAllPreviousDayOrdersByOrderStatus(OrderStatus orderStatus);
 
+    List<Orders> findAUnitDailyOrdersUnderOrderStatus(String unitName, OrderStatus orderStatus);
+
 
     //List<Orders> findAUnitAllCancelledOrdersForToday(String unitName);
 

@@ -69,7 +69,7 @@ public class TotalMonthlyAndDailyRevenueServiceImp implements TotalMonthlyAndDai
 
             List<Orders> listOfCurrentMonthCompletedOrdersInAUnit = orderService.findAUnitMonthlyOrdersUnderOrderStatus(String.valueOf(unitName), OrderStatus.COMPLETED);
 
-            BigDecimal unitRevenue = listOfCurrentMonthCompletedOrdersInAUnit.stream().map(orders -> orders.getTotal().add(BigDecimal.TWO)).reduce(BigDecimal.ZERO, BigDecimal::add);
+            BigDecimal unitRevenue = listOfCurrentMonthCompletedOrdersInAUnit.stream().map(orders -> orders.getTotal().add(BigDecimal.ZERO)).reduce(BigDecimal.ZERO, BigDecimal::add);
 
             UnitMonthlyRevenueResponse unitMonthlyRevenueResponse = new UnitMonthlyRevenueResponse();
             unitMonthlyRevenueResponse.setUnitName(String.valueOf(unitName));

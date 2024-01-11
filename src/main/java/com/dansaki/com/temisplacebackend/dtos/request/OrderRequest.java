@@ -21,5 +21,17 @@ public class OrderRequest {
     private String orderFrom;
     private String paymentType;
     private int numberOfAllItemQuantityOrdered;
-    private BillingInformation billingInformation;
+    
+    private String firstName;
+    private String lastName;
+    private String countryName;
+    private String district;
+    private String homeNumber;
+    private String apartment;
+    private String city;
+    private String postCode;
+    private String phoneNumber;
+    private String emailAddress;
+    private String orderNote;
+
 }

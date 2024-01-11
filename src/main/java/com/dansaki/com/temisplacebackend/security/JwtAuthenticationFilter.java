@@ -1,11 +1,13 @@
 package com.dansaki.com.temisplacebackend.security;
 
 import com.dansaki.com.temisplacebackend.services.token.TokenService;
+import com.dansaki.com.temisplacebackend.utils.ApiResponse;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,7 +28,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
             final String authHeader = request.getHeader("Authorization");
-            System.out.println(authHeader);
+            System.out.println("Http Method "+ request.getMethod());
+            System.out.println("I'm the auth header  opss "+ authHeader);
             final String jwt;
             final String username;
 
@@ -39,11 +42,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             if(username!= null && SecurityContextHolder.getContext().getAuthentication()== null){
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-
                 boolean isValidToken =
-                        tokenService.findTokenByJwt(jwt).map(token -> !token.isExpired() && token.isRevoked()).orElse(false);
+                        tokenService.findTokenByJwt(jwt).map(token -> !token.isExpired() && !token.isRevoked()).orElse(false);
+
+                if(!isValidToken){
+                    sessionexpired();
+                }
 
                 if(jwtService.isTokenValid(jwt, userDetails) && isValidToken){
+                    System.out.println("IS VALID");
+
                     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                             userDetails.getUsername(),
                             userDetails.getPassword(),
@@ -56,4 +64,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
         }
 
+    private ApiResponse sessionexpired() {
+            return ApiResponse.builder()
+                    .data("Session Expired, Kindly Log In Your Account ")
+                    .httpStatus(HttpStatus.FORBIDDEN)
+                    .statusCode(HttpStatus.FORBIDDEN.value())
+                    .isSuccessful(false)
+                    .build();
     }
+
+}

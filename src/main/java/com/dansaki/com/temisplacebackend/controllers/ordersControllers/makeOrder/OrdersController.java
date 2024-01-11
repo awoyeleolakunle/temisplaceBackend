@@ -25,6 +25,6 @@ public class OrdersController {
     public ResponseEntity<ApiResponse> makeOrder(@RequestBody OrderRequest orderRequest){
 
         System.out.println("I entered here");
-        return new ResponseEntity<>(createOrderService.createOrder(orderRequest), HttpStatus.OK);
+        return new ResponseEntity<>(createOrderService.createOrder(orderRequest), HttpStatus.CREATED);
     }
 }

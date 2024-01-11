@@ -1,5 +1,6 @@
 package com.dansaki.com.temisplacebackend.security;
 
+import com.dansaki.com.temisplacebackend.data.models.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -20,11 +21,11 @@ import java.util.stream.Collectors;
 public class JwtService {
 
 
-    public String generateToken(UserDetails userDetails){
-        return generateToken(new HashMap<>(), userDetails);
+    public String generateToken(UserDetails userDetails, User user){
+        return generateToken(new HashMap<>(), userDetails , user);
     }
 
-    public String generateToken(HashMap<String,Object> extractClaims, UserDetails userDetails) {
+    public String generateToken(HashMap<String,Object> extractClaims, UserDetails userDetails, User user) {
 
         Set<String> roles = userDetails.getAuthorities()
                 .stream()
@@ -32,6 +33,8 @@ public class JwtService {
                 .collect(Collectors.toSet());
         Map<String, Object> claims = new HashMap<>();
         claims.put("roles", roles);
+        claims.put("firstName", user.getFirstName());
+        claims.put("lastName", user.getLastName());
         claims.putAll(extractClaims);
 
         return Jwts.builder()
@@ -51,7 +54,6 @@ public class JwtService {
     public boolean isTokenValid(String token, UserDetails userDetails){
         String username = extractUsername(token);
         return username.equals(userDetails.getUsername())  && !isTokenExpired(token);
-
     }
 
     private boolean isTokenExpired(String token) {

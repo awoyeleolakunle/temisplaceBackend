@@ -34,7 +34,7 @@ public class CreateOrderServiceImp implements CreateOrderService{
     private final OrderItemDetailsService orderItemDetailsService;
 
    // private final BillingInformationService billingInformationService;
-    private final BillingInformationRepository billingInformationRepository;
+   // private final BillingInformationRepository billingInformationRepository;
 
     private final ModelMapper modelMapper;
     @Override
@@ -42,14 +42,12 @@ public class CreateOrderServiceImp implements CreateOrderService{
 
         System.out.println("I'm in here ");
 
-        BillingInformation billingInformation = orderRequest.getBillingInformation();
-        BillingInformation savedBillingInformation =  billingInformationRepository.save(billingInformation);
-        System.out.println("I'm teh saved billing information email " + savedBillingInformation.getEmailAddress());
-        System.out.println("I'm teh saved billing information city " + savedBillingInformation.getCity());
-        System.out.println("I'm teh saved billing information first name " + savedBillingInformation.getFirstName());
-        System.out.println("I'm teh saved billing information last name " + savedBillingInformation.getLastName());
-
-
+//        BillingInformation billingInformation = orderRequest.getBillingInformation();
+//        BillingInformation savedBillingInformation =  billingInformationRepository.save(billingInformation);
+//        System.out.println("I'm teh saved billing information email " + savedBillingInformation.getEmailAddress());
+//        System.out.println("I'm teh saved billing information city " + savedBillingInformation.getCity());
+//        System.out.println("I'm teh saved billing information first name " + savedBillingInformation.getFirstName());
+//        System.out.println("I'm teh saved billing information last name " + savedBillingInformation.getLastName());
 
 
         List<OrderItemDetails> orderItemDetailsList = new ArrayList<>();
@@ -62,7 +60,6 @@ public class CreateOrderServiceImp implements CreateOrderService{
         orderItemDetails.setSubTotal(orderItemRequest.getSubTotal());
         OrderItemDetails savedOrderItemDetails = orderItemDetailsService.save(orderItemDetails);
         orderItemDetailsList.add(savedOrderItemDetails);
-
         }
 
 
@@ -80,7 +77,18 @@ public class CreateOrderServiceImp implements CreateOrderService{
         newOrder.setPaymentType(PaymentType.valueOf(orderRequest.getPaymentType().toUpperCase()));
         newOrder.setOrderFrom(OrderFrom.valueOf(orderRequest.getOrderFrom()));
         newOrder.setNumberOfAllItemQuantityOrdered(orderRequest.getNumberOfAllItemQuantityOrdered());
-        newOrder.setBillingInformation(savedBillingInformation);
+
+        newOrder.setFirstName(orderRequest.getFirstName());
+        newOrder.setLastName(orderRequest.getLastName());
+        newOrder.setCountryName(orderRequest.getCountryName());
+        newOrder.setDistrict(orderRequest.getDistrict());
+        newOrder.setHomeNumber(orderRequest.getHomeNumber());
+        newOrder.setApartment(orderRequest.getApartment());
+        newOrder.setCity(orderRequest.getCity());
+        newOrder.setPostCode(orderRequest.getPostCode());
+        newOrder.setPhoneNumber(orderRequest.getPhoneNumber());
+        newOrder.setEmailAddress(orderRequest.getEmailAddress());
+        newOrder.setOrderNote(orderRequest.getOrderNote());
 
         if(orderRequest.getOrderFrom().equals(OrderFrom.INSTORE.name())){
 
